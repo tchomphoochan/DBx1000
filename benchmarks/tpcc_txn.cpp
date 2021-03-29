@@ -208,7 +208,7 @@ RC tpcc_txn_man::run_payment(tpcc_query * query) {
 	}
 	
 	char h_data[25];
-	strncpy(h_data, w_name, 10);
+	strncpy(h_data, w_name, 11);
 	int length = strlen(h_data);
 	if (length > 10) length = 10;
 	strcpy(&h_data[length], "    ");
