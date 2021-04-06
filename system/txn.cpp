@@ -67,12 +67,12 @@ ts_t txn_man::get_ts() {
 }
 
 void txn_man::cleanup(RC rc) {
-#if CC_ALG == HEKATON
+#if CC_ALG == HEKATON || CC_ALG == NOCC
 	row_cnt = 0;
 	wr_cnt = 0;
 	insert_cnt = 0;
 	return;
-#endif
+#else
 	for (int rid = row_cnt - 1; rid >= 0; rid --) {
 		row_t * orig_r = accesses[rid]->orig_row;
 		access_t type = accesses[rid]->type;
@@ -117,10 +117,11 @@ void txn_man::cleanup(RC rc) {
 #if CC_ALG == DL_DETECT
 	dl_detector.clear_dep(get_txn_id());
 #endif
+#endif
 }
 
 row_t * txn_man::get_row(row_t * row, access_t type) {
-	if (CC_ALG == HSTORE)
+	if (CC_ALG == HSTORE || CC_ALG == NOCC)
 		return row;
 	uint64_t starttime = get_sys_clock();
 	RC rc = RCOK;
@@ -201,7 +202,7 @@ txn_man::index_read(INDEX * index, idx_key_t key, int part_id, itemid_t *& item)
 }
 
 RC txn_man::finish(RC rc) {
-#if CC_ALG == HSTORE
+#if CC_ALG == HSTORE || CC_ALG == NOCC
 	return RCOK;
 #endif
 	uint64_t starttime = get_sys_clock();

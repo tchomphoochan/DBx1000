@@ -194,6 +194,7 @@ extern TestCases					g_test_case;
 #define TPCC						2
 #define TEST						3
 // Concurrency Control Algorithm
+#define NOCC						0
 #define NO_WAIT						1
 #define WAIT_DIE					2
 #define DL_DETECT					3
