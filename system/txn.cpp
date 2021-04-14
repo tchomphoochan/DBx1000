@@ -1,4 +1,5 @@
 #include "txn.h"
+#include "config.h"
 #include "row.h"
 #include "wl.h"
 #include "ycsb.h"
@@ -67,7 +68,7 @@ ts_t txn_man::get_ts() {
 }
 
 void txn_man::cleanup(RC rc) {
-#if CC_ALG == HEKATON || CC_ALG == NOCC
+#if CC_ALG == HEKATON || CC_ALG == NOCC || CC_ALG == EXTERN_CC
 	row_cnt = 0;
 	wr_cnt = 0;
 	insert_cnt = 0;
@@ -121,7 +122,7 @@ void txn_man::cleanup(RC rc) {
 }
 
 row_t * txn_man::get_row(row_t * row, access_t type) {
-	if (CC_ALG == HSTORE || CC_ALG == NOCC)
+	if (CC_ALG == HSTORE || CC_ALG == NOCC || CC_ALG == EXTERN_CC)
 		return row;
 	uint64_t starttime = get_sys_clock();
 	RC rc = RCOK;
@@ -202,7 +203,7 @@ txn_man::index_read(INDEX * index, idx_key_t key, int part_id, itemid_t *& item)
 }
 
 RC txn_man::finish(RC rc) {
-#if CC_ALG == HSTORE || CC_ALG == NOCC
+#if CC_ALG == HSTORE || CC_ALG == NOCC || CC_ALG == EXTERN_CC
 	return RCOK;
 #endif
 	uint64_t starttime = get_sys_clock();

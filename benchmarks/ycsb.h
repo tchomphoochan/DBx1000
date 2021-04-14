@@ -1,6 +1,7 @@
 #ifndef _SYNTH_BM_H_
 #define _SYNTH_BM_H_
 
+#include "row.h"
 #include "wl.h"
 #include "txn.h"
 #include "global.h"
@@ -34,6 +35,7 @@ class ycsb_txn_man : public txn_man
 public:
 	void init(thread_t * h_thd, workload * h_wl, uint64_t part_id); 
 	RC run_txn(base_query * query);
+	RC commit_txn(base_query * query, row_t * reads[], row_t * writes[]);
 private:
 	uint64_t row_cnt;
 	ycsb_wl * _wl;

@@ -56,7 +56,7 @@ void row_t::init_manager(row_t * row) {
     manager = (Row_vll *) mem_allocator.alloc(sizeof(Row_vll), _part_id);
 #endif
 
-#if CC_ALG != HSTORE && CC_ALG != NOCC
+#if CC_ALG != HSTORE && CC_ALG != NOCC && CC_ALG != EXTERN_CC
 	manager->init(this);
 #endif
 }
@@ -252,7 +252,7 @@ RC row_t::get_row(access_t type, txn_man * txn, row_t *& row) {
 	TsType ts_type = (type == RD)? R_REQ : P_REQ; 
 	rc = this->manager->access(txn, ts_type, row);
 	return rc;
-#elif CC_ALG == HSTORE || CC_ALG == VLL || CC_ALG == NOCC
+#elif CC_ALG == HSTORE || CC_ALG == VLL || CC_ALG == NOCC || CC_ALG == EXTERN_CC
 	row = this;
 	return rc;
 #else
@@ -308,4 +308,3 @@ void row_t::return_row(access_t type, txn_man * txn, row_t * row) {
 	assert(false);
 #endif
 }
-

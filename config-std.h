@@ -95,6 +95,8 @@
 #define HSTORE_LOCAL_TS				false
 // [VLL] 
 #define TXN_QUEUE_SIZE_LIMIT		THREAD_CNT
+// [EXTERN_CC]
+#define MAX_TXN_SET					16
 
 /***********************************************/
 // Logging
@@ -206,6 +208,7 @@ extern TestCases					g_test_case;
 #define SILO						9
 #define VLL							10
 #define HEKATON 					11
+#define EXTERN_CC					12
 //Isolation Levels 
 #define SERIALIZABLE				1
 #define SNAPSHOT					2

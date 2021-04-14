@@ -26,9 +26,13 @@ public:
 	void init(thread_t * h_thd, workload * h_wl, uint64_t part_id); 
 	RC run_txn(int type, int access_num);
 	RC run_txn(base_query * m_query) { assert(false); };
+	RC commit_txn(base_query * query, row_t * reads[], row_t * writes[]) { assert(false); };
+	RC commit_txn(int type, int access_num, row_t * reads[], row_t * writes[]);
 private:
 	RC testReadwrite(int access_num);
 	RC testConflict(int access_num);
+	RC commitReadwrite(int access_num, row_t * reads[], row_t * writes[]);
+	RC commitConflict(int access_num, row_t * reads[], row_t * writes[]);
 	
 	TestWorkload * _wl;
 };
