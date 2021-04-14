@@ -22,14 +22,14 @@ RC tpcc_wl::init() {
 	path += "TPCC_full_schema.txt";
 #endif
 	cout << "reading schema file: " << path << endl;
-	init_schema( path.c_str() );
+	init_schema( path );
 	cout << "TPCC schema initialized" << endl;
 	init_table();
 	next_tid = 0;
 	return RCOK;
 }
 
-RC tpcc_wl::init_schema(const char * schema_file) {
+RC tpcc_wl::init_schema(string schema_file) {
 	workload::init_schema(schema_file);
 	t_warehouse = tables["WAREHOUSE"];
 	t_district = tables["DISTRICT"];
