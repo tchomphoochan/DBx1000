@@ -1,6 +1,7 @@
 /* Dummy implementation of register_txn (calls commit immediately). */
 
 #include <cstddef>
+#include <vector>
 
 #include "extern_cc.h"
 #include "query.h"
@@ -9,6 +10,9 @@
 #include "wl.h"
 
 #if EXTERN_CC_IMPL == EXTERN_CC_DUMMY
+
+UInt32 g_extern_thread_cnt = 0;
+std::vector<pthread_t> g_extern_p_thds;
 
 // This is equivalent to no concurrency control.
 void register_txn(txn_man* m_txn, base_query* m_query, row_t* reads[],

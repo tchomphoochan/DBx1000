@@ -1,3 +1,4 @@
+#include "extern_cc.h"
 #include "global.h"
 #include "ycsb.h"
 #include "tpcc.h"
@@ -89,6 +90,10 @@ int run()
 	f((void *)(thd_cnt - 1));
 	for (uint32_t i = 0; i < thd_cnt - 1; i++) 
 		pthread_join(p_thds[i], NULL);
+#if CC_ALG == EXTERN_CC
+	for (uint32_t i = 0; i < g_extern_thread_cnt; i++)
+		pthread_join(g_extern_p_thds[i], NULL);
+#endif
 	int64_t endtime = get_server_clock();
 	
 	if (WORKLOAD != TEST) {
