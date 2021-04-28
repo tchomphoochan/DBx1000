@@ -11,7 +11,6 @@ class lock_man;
 class txn_man;
 class thread_t;
 class index_base;
-class Timestamp;
 class Mvcc;
 
 // this is the base class for all workload
