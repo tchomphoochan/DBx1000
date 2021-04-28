@@ -14,13 +14,8 @@ void * f(void *);
 
 thread_t ** m_thds;
 
-// defined in parser.cpp
-void parser(int argc, char * argv[]);
-
-int main(int argc, char* argv[])
+int run()
 {
-	parser(argc, argv);
-	
 	mem_allocator.init(g_part_cnt, MEM_SIZE / g_part_cnt); 
 	stats.init();
 	glob_manager = (Manager *) _mm_malloc(sizeof(Manager), 64);

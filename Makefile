@@ -13,7 +13,7 @@ SOFLAGS += -shared -Wl,-soname,$@,-export-dynamic
 
 CPPS = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)*.cpp))
 OBJS = $(CPPS:.cpp=.o)
-OBJS_NOMAIN = $(filter-out ./system/main.o, $(OBJS))
+OBJS_NOMAIN = $(filter-out ./main.o, $(OBJS))
 DEPS = $(CPPS:.cpp=.d)
 
 all: rundb libdb.so.1
