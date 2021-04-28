@@ -16,10 +16,13 @@ OBJS = $(CPPS:.cpp=.o)
 OBJS_NOMAIN = $(filter-out ./main.o, $(OBJS))
 DEPS = $(CPPS:.cpp=.d)
 
-all: rundb libdb.so.1
+all: rundb libdb.so.1 libdb.a
 
 rundb: $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
+
+libdb.a: $(OBJS_NOMAIN)
+	ar rcs $@ $^
 
 libdb.so.1: $(OBJS_NOMAIN)
 	$(CC) -o $@ $^ $(LDFLAGS) $(SOFLAGS)
@@ -34,4 +37,4 @@ libdb.so.1: $(OBJS_NOMAIN)
 
 .PHONY: clean
 clean:
-	rm -f rundb libdb.so.1 $(OBJS) $(DEPS)
+	rm -f rundb libdb.so.1 libdb.a $(OBJS) $(DEPS)
