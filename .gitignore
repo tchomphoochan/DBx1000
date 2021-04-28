@@ -2,3 +2,4 @@
 *.d
 compile_commands.json
 rundb
+libdb.so.1
