@@ -1,6 +1,7 @@
 *.o
 *.d
 compile_commands.json
+config.h
 rundb
 libdb.a
 libdb.so.1
