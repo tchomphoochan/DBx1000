@@ -32,8 +32,8 @@ RC TestTxnMan::commit_txn(int type, int access_num, row_t * reads[], row_t * wri
 RC TestTxnMan::testReadwrite(int access_num) {
 	itemid_t * m_item;
 #if CC_ALG == EXTERN_CC
-	row_t * reads[MAX_TXN_SET];
-	row_t * writes[MAX_TXN_SET];
+	auto reads = new row_t * [MAX_TXN_SET];
+	auto writes = new row_t * [MAX_TXN_SET];
 	size_t read_cnt = 0;
 	size_t write_cnt = 0;
 #else
@@ -118,8 +118,8 @@ TestTxnMan::testConflict(int access_num)
 	RC rc = RCOK;
 	itemid_t * m_item;
 #if CC_ALG == EXTERN_CC
-	row_t * reads[MAX_TXN_SET];
-	row_t * writes[MAX_TXN_SET];
+	auto reads = new row_t * [MAX_TXN_SET];
+	auto writes= new row_t * [MAX_TXN_SET];
 	size_t read_cnt = 0;
 	size_t write_cnt = 0;
 #endif

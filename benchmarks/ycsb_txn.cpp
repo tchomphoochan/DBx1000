@@ -29,8 +29,8 @@ RC ycsb_txn_man::run_txn(base_query * query) {
 	itemid_t * m_item = NULL;
   	row_cnt = 0;
 #if CC_ALG == EXTERN_CC
-	row_t * reads[MAX_TXN_SET];
-	row_t * writes[MAX_TXN_SET];
+	auto reads = new row_t * [MAX_TXN_SET];
+	auto writes= new row_t * [MAX_TXN_SET];
 	size_t read_cnt = 0;
 	size_t write_cnt = 0;
 #endif

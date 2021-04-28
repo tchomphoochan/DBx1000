@@ -38,6 +38,8 @@ void* lock_and_commit(void* arg) {
 
     pthread_mutex_unlock(&global_lock);
 
+    delete[] s->reads;
+    delete[] s->writes;
     delete s;
 
     return NULL;

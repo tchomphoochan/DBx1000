@@ -53,8 +53,8 @@ RC tpcc_txn_man::run_payment(tpcc_query * query) {
 	uint64_t key;
 	itemid_t * item;
 #if CC_ALG == EXTERN_CC
-	row_t * reads[MAX_TXN_SET];
-	row_t * writes[MAX_TXN_SET];
+	auto reads = new row_t * [MAX_TXN_SET];
+	auto writes= new row_t * [MAX_TXN_SET];
 	size_t read_cnt = 0;
 	size_t write_cnt = 0;
 #endif
@@ -353,8 +353,8 @@ RC tpcc_txn_man::run_new_order(tpcc_query * query) {
 	itemid_t * item;
 	INDEX * index;
 #if CC_ALG == EXTERN_CC
-	row_t * reads[MAX_TXN_SET];
-	row_t * writes[MAX_TXN_SET];
+	auto reads = new row_t * [MAX_TXN_SET];
+	auto writes= new row_t * [MAX_TXN_SET];
 	size_t read_cnt = 0;
 	size_t write_cnt = 0;
 #endif

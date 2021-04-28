@@ -24,6 +24,8 @@ void register_txn(txn_man* m_txn, base_query* m_query, row_t* reads[],
     } else {
         m_txn->commit_txn(m_query, reads, writes);
     }
+    delete[] reads;
+    delete[] writes;
 }
 
 #endif
