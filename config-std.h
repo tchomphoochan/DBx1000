@@ -96,6 +96,7 @@
 // [VLL] 
 #define TXN_QUEUE_SIZE_LIMIT		THREAD_CNT
 // [EXTERN_CC]
+#define EXTERN_CC_IMPL				EXTERN_CC_GL
 #define MAX_TXN_SET					16
 
 /***********************************************/
@@ -209,6 +210,10 @@ extern TestCases					g_test_case;
 #define VLL							10
 #define HEKATON 					11
 #define EXTERN_CC					12
+// External concurrency control implementations
+#define EXTERN_CC_NONE				0
+#define EXTERN_CC_DUMMY				1
+#define EXTERN_CC_GL				2
 //Isolation Levels 
 #define SERIALIZABLE				1
 #define SNAPSHOT					2
