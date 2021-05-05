@@ -16,8 +16,10 @@ RC workload::init() {
 RC workload::init_schema(string schema_file) {
     assert(sizeof(uint64_t) == 8);
     assert(sizeof(double) == 8);	
+    string fpath = __FILE__;  // Location: $rootdir/system/wl.cpp
+    string rootdir = fpath.substr(0, fpath.rfind('/', fpath.rfind('/') - 1) + 1);
+    ifstream fin(rootdir + schema_file);
 	string line;
-	ifstream fin(schema_file);
     Catalog * schema;
     while (getline(fin, line)) {
 		if (line.compare(0, 6, "TABLE=") == 0) {
