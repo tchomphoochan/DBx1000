@@ -138,10 +138,14 @@ enum lock_t {LOCK_EX, LOCK_SH, LOCK_NONE };
 /* TIMESTAMP */
 enum TsType {R_REQ, W_REQ, P_REQ, XP_REQ}; 
 
-
-#define MSG(str, args...) { \
-	printf("[%s : %d] " str, __FILE__, __LINE__, args); } \
-//	printf(args); }
+// Helper macros for printing messages.
+#define MSG(str, args...) \
+    { printf("[%s : %d] " str, __FILE__, __LINE__, args); }
+#define CXX_MSG(msg)                                                                  \
+    std::cout << static_cast<std::ostringstream&>(std::ostringstream()                \
+                                                  << "[" << __FILE__ << ":"           \
+                                                  << __LINE__ << "] " << msg << "\n") \
+                     .str();
 
 // principal index structure. The workload may decide to use a different 
 // index structure for specific purposes. (e.g. non-primary key access should use hash)
@@ -157,4 +161,3 @@ enum TsType {R_REQ, W_REQ, P_REQ, XP_REQ};
 #ifndef UINT64_MAX
 #define UINT64_MAX 		18446744073709551615UL
 #endif // UINT64_MAX
-
