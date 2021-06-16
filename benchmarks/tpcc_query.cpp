@@ -70,11 +70,7 @@ void tpcc_query::gen_new_order(uint64_t thd_id) {
 	d_id = URand(1, DIST_PER_WARE, w_id-1);
 	c_id = NURand(1023, 1, g_cust_per_dist, w_id-1);
 	rbk = URand(1, 100, w_id-1);
-#if CC_ALG == EXTERN_CC
 	ol_cnt = URand(5, min(15, MAX_TXN_SET - 2), w_id-1);
-#else
-	ol_cnt = URand(5, 15, w_id-1);
-#endif
 	o_entry_d = 2013;
 	items = (Item_no *) _mm_malloc(sizeof(Item_no) * ol_cnt, 64);
 	remote = false;
