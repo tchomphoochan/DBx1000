@@ -97,7 +97,7 @@
 #define TXN_QUEUE_SIZE_LIMIT		THREAD_CNT
 // [EXTERN_CC]
 #define EXTERN_CC_IMPL				EXTERN_CC_GL
-#define MAX_TXN_SET					16
+#define MAX_TXN_SET					8
 
 /***********************************************/
 // Logging
