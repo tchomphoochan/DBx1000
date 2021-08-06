@@ -20,6 +20,7 @@
 #include <time.h> 
 #include <sys/time.h>
 #include <math.h>
+#include <filesystem>
 
 #include "pthread.h"
 #include "config.h"
@@ -141,10 +142,11 @@ enum TsType {R_REQ, W_REQ, P_REQ, XP_REQ};
 // Helper macros for printing messages.
 #define MSG(str, args...) \
     { printf("[%s : %d] " str, __FILE__, __LINE__, args); }
-#define CXX_MSG(msg)                                                                  \
-    std::cout << static_cast<std::ostringstream&>(std::ostringstream()                \
-                                                  << "[" << __FILE__ << ":"           \
-                                                  << __LINE__ << "] " << msg << "\n") \
+#define CXX_MSG(msg)                                                               \
+    std::cout << static_cast<std::ostringstream&>(                                 \
+                     std::ostringstream()                                          \
+                     << "[" << std::filesystem::path(__FILE__).filename().string() \
+                     << ":" << __LINE__ << "] " << msg << "\n")                    \
                      .str();
 
 // principal index structure. The workload may decide to use a different 
