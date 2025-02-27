@@ -1,12 +1,12 @@
 CC=g++
-CFLAGS=-Wall -g -std=c++0x
+CFLAGS=-g -std=c++0x -Wall
 
 .SUFFIXES: .o .cpp .h
 
 SRC_DIRS = ./ ./benchmarks/ ./concurrency_control/ ./storage/ ./system/
 INCLUDE = -I. -I./benchmarks -I./concurrency_control -I./storage -I./system
 
-CFLAGS += $(INCLUDE) -D NOGRAPHITE=1 -Werror -O3 -fPIC
+CFLAGS += $(INCLUDE) -D NOGRAPHITE=1 -O3 -fPIC
 LDFLAGS = -Wall -L. -L./libs -pthread -g -lrt -std=c++0x -O3 -ljemalloc
 LDFLAGS += $(CFLAGS)
 SOFLAGS += -shared -Wl,-soname,$@,-export-dynamic

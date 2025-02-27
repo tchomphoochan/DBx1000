@@ -142,12 +142,9 @@ enum TsType {R_REQ, W_REQ, P_REQ, XP_REQ};
 // Helper macros for printing messages.
 #define MSG(str, args...) \
     { printf("[%s : %d] " str, __FILE__, __LINE__, args); }
-#define CXX_MSG(msg)                                                               \
-    std::cout << static_cast<std::ostringstream&>(                                 \
-                     std::ostringstream()                                          \
-                     << "[" << std::filesystem::path(__FILE__).filename().string() \
-                     << ":" << __LINE__ << "] " << msg << "\n")                    \
-                     .str();
+#define CXX_MSG(msg) \
+    std::cout << "[" << std::filesystem::path(__FILE__).filename().string() \
+              << ":" << __LINE__ << "] " << msg << "\n";
 
 // principal index structure. The workload may decide to use a different 
 // index structure for specific purposes. (e.g. non-primary key access should use hash)
