@@ -39,7 +39,7 @@
 /***********************************************/
 // WAIT_DIE, NO_WAIT, DL_DETECT, TIMESTAMP, MVCC, HEKATON, HSTORE, OCC, VLL, TICTOC, SILO
 // TODO TIMESTAMP does not work at this moment
-#define CC_ALG 						TICTOC
+#define CC_ALG 						EXTERN_CC
 #define ISOLATION_LEVEL 			SERIALIZABLE
 
 // all transactions acquire tuples according to the primary key order.
@@ -96,7 +96,7 @@
 // [VLL] 
 #define TXN_QUEUE_SIZE_LIMIT		THREAD_CNT
 // [EXTERN_CC]
-#define EXTERN_CC_IMPL				EXTERN_CC_GL
+#define EXTERN_CC_IMPL				EXTERN_CC_NONE
 #define MAX_TXN_SET					8
 
 /***********************************************/
